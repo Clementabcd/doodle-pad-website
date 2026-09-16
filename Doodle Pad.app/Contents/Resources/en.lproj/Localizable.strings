@@ -1,0 +1,91 @@
+// General
+"Doodle Pad" = "Doodle Pad";
+"New Canvas…" = "New Canvas…";
+"New Canvas" = "New Canvas";
+"Export Drawing" = "Export Drawing";
+"Drawing-" = "Drawing-";
+"Clear" = "Clear";
+"Cancel" = "Cancel";
+"Clear canvas?" = "Clear canvas?";
+"This cannot be undone." = "This cannot be undone.";
+"single_stroke" = "%lld stroke";
+"multiple_strokes" = "%lld strokes";
+
+// Menu
+"Export…" = "Export…";
+"Copy Canvas" = "Copy Canvas";
+"Canvas" = "Canvas";
+"Clear Active Layer" = "Clear Active Layer";
+"Clear All Layers" = "Clear All Layers";
+"Toggle Grid" = "Toggle Grid";
+"Layers" = "Layers";
+"Add Layer" = "Add Layer";
+"Delete Active Layer" = "Delete Active Layer";
+"Move Layer Up" = "Move Layer Up";
+"Move Layer Down" = "Move Layer Down";
+
+// Sidebar
+"Tools" = "Tools";
+"Color" = "Color";
+"Size" = "Size";
+"Opacity" = "Opacity";
+"Eraser" = "Eraser";
+"View" = "View";
+"100%" = "100%";
+"Fit" = "Fit";
+"Grid" = "Grid";
+"Actions" = "Actions";
+"Undo" = "Undo";
+"Redo" = "Redo";
+"Copy" = "Copy";
+"Export" = "Export";
+"Layer" = "Layer";
+"Background" = "Background";
+"Hide layer" = "Hide layer";
+"Show layer" = "Show layer";
+
+// Drawing Section
+"Drawing" = "Drawing";
+"Draw" = "Draw";
+"Fill" = "Fill";
+"Line" = "Line";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Drop" = "Drop";
+"Export as" = "Export as";
+"Background color" = "Background color";
+"Transparent background" = "Transparent background";
+
+// File
+"Open Drawing" = "Open Drawing";
+"Open…" = "Open…";
+"Save As…" = "Save As…";
+
+// Sections
+"Forms" = "Forms";
+
+// Close Confirmation
+"Do you want to save your drawing?" = "Do you want to save your drawing?";
+"Your drawing will be lost if you don't save." = "Your drawing will be lost if you don't save.";
+"Save" = "Save";
+"Don't Save" = "Don't Save";
+"Save Drawing" = "Save Drawing";
+
+// Help / tooltips
+"Undo (⌘Z)" = "Undo (⌘Z)";
+"Redo (⇧⌘Z)" = "Redo (⇧⌘Z)";
+"Eraser (E)" = "Eraser (E)";
+"Actual size" = "Actual size";
+"Fit to window" = "Fit to window";
+"Toggle grid (⌘G)" = "Toggle grid (⌘G)";
+"Copy to clipboard" = "Copy to clipboard";
+"Export PNG" = "Export PNG";
+"New canvas (⌘N)" = "New canvas (⌘N)";
+
+// New Canvas Sheet
+"Custom size" = "Custom size";
+"Width" = "Width";
+"Height" = "Height";
+"px" = "px";
+"Create Canvas" = "Create Canvas";
+"Brush" = "Brush";

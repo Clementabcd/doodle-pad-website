@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="page.title">Doodle Pad — A native macOS drawing app</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        body { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        .bg-hero { background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #ede9fe 60%, #e0e7ff 100%); }
+        .bg-cta { background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #44403c 100%); }
+        .card-hover { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -12px rgba(0,0,0,0.12), 0 8px 16px -8px rgba(0,0,0,0.06); }
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .fade-in-up-2 { animation: fadeInUp 0.8s ease-out 0.15s forwards; opacity: 0; }
+        .fade-in-up-3 { animation: fadeInUp 0.8s ease-out 0.3s forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .lang-btn { transition: all 0.2s ease; }
+        .lang-btn.active { background: #e7e5e4; color: #1c1917; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-stone-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="text-xl">🎨</span>
+                <span class="font-bold text-xl tracking-tight text-stone-800">Doodle Pad</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
+                    <a href="#features" class="hover:text-stone-800 transition" data-i18n="nav.features">Features</a>
+                    <a href="#about" class="hover:text-stone-800 transition" data-i18n="nav.about">About</a>
+                    <a href="Doodle Pad.app" class="inline-flex items-center gap-2 bg-stone-800 text-white px-5 py-2.5 rounded-full hover:bg-stone-700 transition font-semibold text-sm shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span data-i18n="nav.download">Download</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-1 ml-4 pl-4 border-l border-stone-200">
+                    <button onclick="setLang('en')" class="lang-btn active text-xs font-semibold px-2 py-1 rounded-md text-stone-500 hover:text-stone-800 hover:bg-stone-100" data-lang="en">EN</button>
+                    <button onclick="setLang('fr')" class="lang-btn text-xs font-semibold px-2 py-1 rounded-md text-stone-500 hover:text-stone-800 hover:bg-stone-100" data-lang="fr">FR</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-hero min-h-screen flex items-center pt-16 overflow-hidden relative">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-pink-200/30 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 py-24 md:py-32 text-center relative">
+            <div class="fade-in inline-flex items-center gap-2 px-4 py-1.5 bg-white/70 rounded-full text-stone-500 text-sm font-medium mb-8 backdrop-blur-sm border border-stone-200/50 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span data-i18n="hero.badge">Native macOS 14+ — Built with Swift &amp; SwiftUI</span>
+            </div>
+            <h1 class="fade-in-up text-5xl md:text-7xl font-extrabold text-stone-800 leading-[1.1] tracking-tight mb-6">
+                <span data-i18n="hero.title.line1">Sketch. Shape.</span><br />
+                <span class="bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 bg-clip-text text-transparent" data-i18n="hero.title.line2">Create freely.</span>
+            </h1>
+            <p class="fade-in-up-2 text-lg md:text-xl text-stone-500 max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero.subtitle">
+                A native macOS drawing app with layers, vector strokes, shape tools, flood fill,<br class="hidden md:block" />
+                eyedropper, multi-format export, and undo/redo — all built for macOS 14+.
+            </p>
+            <div class="fade-in-up-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="Doodle Pad.app" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-white font-semibold px-8 py-3.5 rounded-full text-lg transition shadow-lg shadow-stone-800/20">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span data-i18n="hero.cta">Download for macOS</span>
+                </a>
+                <a href="#features" class="inline-flex items-center gap-2 bg-white/80 hover:bg-white text-stone-700 font-medium px-8 py-3.5 rounded-full text-lg transition border border-stone-200 shadow-sm backdrop-blur-sm">
+                    <span data-i18n="hero.features">See features</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </a>
+            </div>
+            <!-- Mockup preview -->
+            <div class="fade-in-up-3 mt-20 max-w-4xl mx-auto">
+                <div class="relative bg-stone-900 rounded-2xl p-2 shadow-2xl shadow-stone-900/20 border border-stone-700/50 float">
+                    <div class="flex items-center gap-1.5 px-3 py-2.5 border-b border-stone-700/50 bg-stone-800/50 rounded-t-xl">
+                        <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        <span class="ml-3 text-xs text-stone-400 font-medium">Doodle Pad — sketch.doodlepad</span>
+                    </div>
+                    <div class="aspect-[16/10] bg-stone-800 rounded-b-xl flex items-center justify-center overflow-hidden">
+                        <div class="w-full h-full p-4 flex gap-3">
+                            <!-- Sidebar -->
+                            <div class="w-1/5 rounded-xl p-2 space-y-2 flex flex-col" style="background:#1c1c2e">
+                                <div class="h-2 w-12 rounded bg-white/10"></div>
+                                <div class="h-8 rounded bg-white/5 flex items-center px-2 gap-1">
+                                    <span class="w-4 h-4 rounded bg-violet-500/40"></span>
+                                    <span class="w-4 h-4 rounded bg-violet-500/40"></span>
+                                    <span class="flex-1"></span>
+                                    <span class="w-4 h-4 rounded bg-white/10"></span>
+                                </div>
+                                <div class="h-px bg-white/5"></div>
+                                <div class="h-6 rounded bg-white/5"></div>
+                                <div class="flex gap-1">
+                                    <span class="flex-1 h-8 rounded bg-violet-500/50"></span>
+                                    <span class="flex-1 h-8 rounded bg-white/5"></span>
+                                    <span class="flex-1 h-8 rounded bg-white/5"></span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span class="flex-1 h-8 rounded bg-white/5"></span>
+                                    <span class="flex-1 h-8 rounded bg-white/5"></span>
+                                </div>
+                                <div class="h-px bg-white/5"></div>
+                                <div class="flex-1 rounded bg-white/5"></div>
+                            </div>
+                            <!-- Canvas -->
+                            <div class="flex-1 bg-white rounded-lg flex items-center justify-center relative">
+                                <svg viewBox="0 0 400 300" class="w-full h-full p-4" style="background: repeating-linear-gradient(0deg, transparent, transparent 24px, #f5f5f4 24px, #f5f5f4 25px), repeating-linear-gradient(90deg, transparent, transparent 24px, #f5f5f4 24px, #f5f5f4 25px);">
+                                    <path d="M 80 180 Q 120 120 160 160 Q 200 200 240 140 Q 280 80 320 160" fill="none" stroke="#4f46e5" stroke-width="4" stroke-linecap="round"/>
+                                    <rect x="260" y="60" width="80" height="60" rx="8" fill="none" stroke="#ef4444" stroke-width="3"/>
+                                    <ellipse cx="140" cy="220" rx="50" ry="30" fill="none" stroke="#22c55e" stroke-width="3"/>
+                                    <line x1="60" y1="80" x2="180" y2="100" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                    <path d="M 200 180 L 220 220 L 180 220 Z" fill="#8b5cf6" opacity="0.4"/>
+                                </svg>
+                                <div class="absolute bottom-0 left-0 right-0 h-8 bg-white border-t border-stone-100 flex items-center px-3 gap-3">
+                                    <span class="w-10 h-2 rounded bg-stone-200"></span>
+                                    <span class="w-12 h-2 rounded bg-stone-200"></span>
+                                    <span class="flex-1"></span>
+                                    <span class="w-6 h-2 rounded bg-stone-200"></span>
+                                    <span class="w-8 h-2 rounded bg-stone-200"></span>
+                                    <span class="w-10 h-2 rounded bg-stone-200"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-24 md:py-32 bg-stone-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-sm font-semibold tracking-widest uppercase text-violet-600 mb-3 block" data-i18n="features.label">Features</span>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-800 mb-4" data-i18n="features.title">Everything you need to draw</h2>
+                <p class="text-stone-500 text-lg max-w-xl mx-auto" data-i18n="features.subtitle">A full-featured drawing studio packed into a clean, native macOS app.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-violet-100 flex items-center justify-center text-xl mb-5">✏️</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.freehand.title">Freehand Drawing</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.freehand.desc">Smooth bezier-curve strokes with adjustable size, opacity, and colour. Draw naturally with pressure sensitivity.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-sky-100 flex items-center justify-center text-xl mb-5">🔷</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.shapes.title">Shape Tools</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.shapes.desc">Line, Rectangle, and Ellipse tools with a dedicated <strong>Forms</strong> panel. Click-drag to create perfect shapes.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center text-xl mb-5">📑</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.layers.title">Layer System</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.layers.desc">Add, delete, reorder, and toggle visibility. Each layer has its own thumbnail preview and opacity control.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-rose-100 flex items-center justify-center text-xl mb-5">🪣</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.fill.title">Flood Fill</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.fill.desc">Intelligent scanline fill with boundary tracing and simplification. Perfect for colouring closed areas.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-teal-100 flex items-center justify-center text-xl mb-5">💧</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.eyedropper.title">Eye Dropper</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.eyedropper.desc">Sample any pixel colour from your canvas with one tap. Automatically switches back to Draw mode.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-amber-100 flex items-center justify-center text-xl mb-5">🎯</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.selection.title">Selection Tool</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.selection.desc">Tap to select individual strokes, drag to reposition them. Delete, or switch tools to deselect.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center text-xl mb-5">📤</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.export.title">Multi-Format Export</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.export.desc">Export to PNG, JPEG, TIFF, BMP, or <strong>vector PDF</strong> — all from a single popover or the File menu.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center text-xl mb-5">💾</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.save.title">Save &amp; Open</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.save.desc">Native <code class="text-stone-700 bg-stone-100 px-1.5 py-0.5 rounded text-xs font-mono">.doodlepad</code> format preserves every stroke, layer, image, and setting. Auto-saves every 30s.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-cyan-100 flex items-center justify-center text-xl mb-5">↩️</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.undo.title">Unlimited Undo / Redo</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.undo.desc">Full layer-state history. <kbd class="text-stone-700 bg-stone-100 px-1.5 py-0.5 rounded text-xs font-mono border border-stone-200">⌘Z</kbd> to undo, <kbd class="text-stone-700 bg-stone-100 px-1.5 py-0.5 rounded text-xs font-mono border border-stone-200">⇧⌘Z</kbd> to redo — never lose your work.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-indigo-100 flex items-center justify-center text-xl mb-5">📐</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.grid.title">Grid &amp; Background</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.grid.desc">Toggleable grid overlay, custom background colour, and transparent canvas support.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-violet-100 flex items-center justify-center text-xl mb-5">🔍</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.zoom.title">Zoom &amp; Pan</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.zoom.desc">Scroll to pan, slider or <kbd class="text-stone-700 bg-stone-100 px-1.5 py-0.5 rounded text-xs font-mono border border-stone-200">⌘+/⌘-</kbd> to zoom. Reset to 100% or fit to window in one click.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-fuchsia-100 flex items-center justify-center text-xl mb-5">🌍</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.languages.title">5 Languages</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.languages.desc">Fully localized in English, French, German, Spanish, and Japanese. Switch via system settings.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-lime-100 flex items-center justify-center text-xl mb-5">🖨️</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.print.title">Printing</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.print.desc">Full-resolution canvas printing via the standard macOS print panel. <kbd class="text-stone-700 bg-stone-100 px-1.5 py-0.5 rounded text-xs font-mono border border-stone-200">⌘P</kbd> to print.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-stone-100 flex items-center justify-center text-xl mb-5">⚙️</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.prefs.title">Preferences</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.prefs.desc">Customize default canvas size and auto-save behaviour in a native preferences panel.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-7 border border-stone-100 card-hover shadow-sm">
+                    <div class="w-11 h-11 rounded-xl bg-yellow-100 flex items-center justify-center text-xl mb-5">🖼️</div>
+                    <h3 class="font-bold text-lg mb-2 text-stone-800" data-i18n="features.dragdrop.title">Drag &amp; Drop Images</h3>
+                    <p class="text-stone-500 text-sm leading-relaxed" data-i18n="features.dragdrop.desc">Drop image files directly onto the canvas. Each becomes a new layer with embedded image data.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Tech -->
+    <section id="about" class="py-24 md:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-sm font-semibold tracking-widest uppercase text-violet-600 mb-3 block" data-i18n="about.label">Technology</span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-800 mb-6" data-i18n="about.title">Built for macOS.<br />Made with Swift.</h2>
+                    <p class="text-stone-500 text-lg leading-relaxed mb-8" data-i18n="about.desc">
+                        Doodle Pad is a native macOS application written entirely in Swift and SwiftUI.
+                        It uses <strong>Swift Package Manager</strong> for builds, <strong>NavigationSplitView</strong>
+                        for its professional sidebar layout, and native <strong>Core Graphics</strong> for
+                        pixel-perfect rendering and export.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-stone-50 rounded-xl p-4 border border-stone-100">
+                            <span class="text-2xl font-bold text-violet-600">14+</span>
+                            <p class="text-stone-500 text-sm mt-1" data-i18n="about.stat.macos">macOS minimum</p>
+                        </div>
+                        <div class="bg-stone-50 rounded-xl p-4 border border-stone-100">
+                            <span class="text-2xl font-bold text-violet-600">5</span>
+                            <p class="text-stone-500 text-sm mt-1" data-i18n="about.stat.langs">Languages</p>
+                        </div>
+                        <div class="bg-stone-50 rounded-xl p-4 border border-stone-100">
+                            <span class="text-2xl font-bold text-violet-600">Swift</span>
+                            <p class="text-stone-500 text-sm mt-1" data-i18n="about.stat.lang">5.9 + SwiftUI</p>
+                        </div>
+                        <div class="bg-stone-50 rounded-xl p-4 border border-stone-100">
+                            <span class="text-2xl font-bold text-violet-600">SPM</span>
+                            <p class="text-stone-500 text-sm mt-1" data-i18n="about.stat.build">Build system</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-stone-50 rounded-3xl p-8 border border-stone-100 shadow-sm">
+                    <div class="text-center mb-6">
+                        <span class="text-5xl">🎨</span>
+                        <h3 class="text-2xl font-bold mt-3 text-stone-800">Doodle Pad</h3>
+                        <p class="text-stone-500 text-sm" data-i18n="about.version">Version 1.0</p>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between py-2 border-b border-stone-100"><span class="text-stone-500" data-i18n="about.detail.target">Target</span><span class="font-medium text-stone-700">macOS 14+</span></div>
+                        <div class="flex justify-between py-2 border-b border-stone-100"><span class="text-stone-500" data-i18n="about.detail.lang">Language</span><span class="font-medium text-stone-700">Swift 5.9</span></div>
+                        <div class="flex justify-between py-2 border-b border-stone-100"><span class="text-stone-500" data-i18n="about.detail.framework">Framework</span><span class="font-medium text-stone-700">SwiftUI + AppKit</span></div>
+                        <div class="flex justify-between py-2 border-b border-stone-100"><span class="text-stone-500" data-i18n="about.detail.build">Build system</span><span class="font-medium text-stone-700">Swift Package Manager</span></div>
+                        <div class="flex justify-between py-2"><span class="text-stone-500" data-i18n="about.detail.localizations">Localizations</span><span class="font-medium text-stone-700">EN · FR · DE · ES · JA</span></div>
+                    </div>
+                    <a href="Doodle Pad.app" class="mt-6 w-full inline-flex items-center justify-center gap-2 bg-stone-800 hover:bg-stone-700 text-white font-semibold px-6 py-3 rounded-xl transition text-sm shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span data-i18n="about.cta">Download Doodle Pad</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section id="download" class="py-24 md:py-32 bg-cta relative overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-stone-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 text-center relative">
+            <span class="text-6xl mb-6 block">🎨</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight" data-i18n="cta.title">Ready to start drawing?</h2>
+            <p class="text-white/60 text-lg mb-10 max-w-lg mx-auto" data-i18n="cta.subtitle">Download Doodle Pad and bring your ideas to life on macOS.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="Doodle Pad.app" class="inline-flex items-center gap-2.5 bg-white hover:bg-stone-100 text-stone-800 font-bold px-10 py-4 rounded-full text-lg transition shadow-2xl shadow-black/20">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span data-i18n="cta.button">Download .app (macOS 14+)</span>
+                </a>
+                <span class="text-white/40 text-sm" data-i18n="cta.or">or build from source via <code class="text-white/60 bg-white/10 px-2 py-0.5 rounded text-xs font-mono">swift build</code></span>
+            </div>
+            <div class="mt-8 flex items-center justify-center gap-6 text-white/40 text-sm">
+                <span data-i18n="cta.size">~12 MB</span>
+                <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                <span data-i18n="cta.arch">Apple Silicon + Intel</span>
+                <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                <span data-i18n="cta.license">Open Source</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-stone-100 py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-stone-400">
+            <span data-i18n="footer.made">Doodle Pad — built with Swift &amp; SwiftUI</span>
+            <a href="https://github.com/anomalyco/opencode" target="_blank" rel="noopener noreferrer" class="hover:text-stone-600 transition" data-i18n="footer.opencode">Built with opencode</a>
+        </div>
+    </footer>
+
+    <script>
+    const i18n = {
+        en: {
+            'page.title': 'Doodle Pad — A native macOS drawing app',
+            'nav.features': 'Features',
+            'nav.about': 'About',
+            'nav.download': 'Download',
+            'hero.badge': 'Native macOS 14+ — Built with Swift & SwiftUI',
+            'hero.title.line1': 'Sketch. Shape.',
+            'hero.title.line2': 'Create freely.',
+            'hero.subtitle': 'A native macOS drawing app with layers, vector strokes, shape tools, flood fill,<br class="hidden md:block" /> eyedropper, multi-format export, and undo/redo — all built for macOS 14+.',
+            'hero.cta': 'Download for macOS',
+            'hero.features': 'See features',
+            'features.label': 'Features',
+            'features.title': 'Everything you need to draw',
+            'features.subtitle': 'A full-featured drawing studio packed into a clean, native macOS app.',
+            'features.freehand.title': 'Freehand Drawing',
+            'features.freehand.desc': 'Smooth bezier-curve strokes with adjustable size, opacity, and colour. Draw naturally with pressure sensitivity.',
+            'features.shapes.title': 'Shape Tools',
+            'features.shapes.desc': 'Line, Rectangle, and Ellipse tools with a dedicated <strong>Forms</strong> panel. Click-drag to create perfect shapes.',
+            'features.layers.title': 'Layer System',
+            'features.layers.desc': 'Add, delete, reorder, and toggle visibility. Each layer has its own thumbnail preview and opacity control.',
+            'features.fill.title': 'Flood Fill',
+            'features.fill.desc': 'Intelligent scanline fill with boundary tracing and simplification. Perfect for colouring closed areas.',
+            'features.eyedropper.title': 'Eye Dropper',
+            'features.eyedropper.desc': 'Sample any pixel colour from your canvas with one tap. Automatically switches back to Draw mode.',
+            'features.selection.title': 'Selection Tool',
+            'features.selection.desc': 'Tap to select individual strokes, drag to reposition them. Delete, or switch tools to deselect.',
+            'features.export.title': 'Multi-Format Export',
+            'features.export.desc': 'Export to PNG, JPEG, TIFF, BMP, or <strong>vector PDF</strong> — all from a single popover or the File menu.',
+            'features.save.title': 'Save & Open',
+            'features.save.desc': 'Native <code>.doodlepad</code> format preserves every stroke, layer, image, and setting. Auto-saves every 30s.',
+            'features.undo.title': 'Unlimited Undo / Redo',
+            'features.undo.desc': 'Full layer-state history. ⌘Z to undo, ⇧⌘Z to redo — never lose your work.',
+            'features.grid.title': 'Grid & Background',
+            'features.grid.desc': 'Toggleable grid overlay, custom background colour, and transparent canvas support.',
+            'features.zoom.title': 'Zoom & Pan',
+            'features.zoom.desc': 'Scroll to pan, slider or ⌘+/⌘- to zoom. Reset to 100% or fit to window in one click.',
+            'features.languages.title': '5 Languages',
+            'features.languages.desc': 'Fully localized in English, French, German, Spanish, and Japanese. Switch via system settings.',
+            'features.print.title': 'Printing',
+            'features.print.desc': 'Full-resolution canvas printing via the standard macOS print panel. ⌘P to print.',
+            'features.prefs.title': 'Preferences',
+            'features.prefs.desc': 'Customize default canvas size and auto-save behaviour in a native preferences panel.',
+            'features.dragdrop.title': 'Drag & Drop Images',
+            'features.dragdrop.desc': 'Drop image files directly onto the canvas. Each becomes a new layer with embedded image data.',
+            'about.label': 'Technology',
+            'about.title': 'Built for macOS.<br />Made with Swift.',
+            'about.desc': 'Doodle Pad is a native macOS application written entirely in Swift and SwiftUI. It uses <strong>Swift Package Manager</strong> for builds, <strong>NavigationSplitView</strong> for its professional sidebar layout, and native <strong>Core Graphics</strong> for pixel-perfect rendering and export.',
+            'about.stat.macos': 'macOS minimum',
+            'about.stat.langs': 'Languages',
+            'about.stat.lang': '5.9 + SwiftUI',
+            'about.stat.build': 'Build system',
+            'about.version': 'Version 1.0',
+            'about.detail.target': 'Target',
+            'about.detail.lang': 'Language',
+            'about.detail.framework': 'Framework',
+            'about.detail.build': 'Build system',
+            'about.detail.localizations': 'Localizations',
+            'about.cta': 'Download Doodle Pad',
+            'cta.title': 'Ready to start drawing?',
+            'cta.subtitle': 'Download Doodle Pad and bring your ideas to life on macOS.',
+            'cta.button': 'Download .app (macOS 14+)',
+            'cta.or': 'or build from source via <code>swift build</code>',
+            'cta.size': '~12 MB',
+            'cta.arch': 'Apple Silicon + Intel',
+            'cta.license': 'Open Source',
+            'footer.made': 'Doodle Pad — built with Swift & SwiftUI',
+            'footer.opencode': 'Built with opencode'
+        },
+        fr: {
+            'page.title': 'Doodle Pad — Une application de dessin native pour macOS',
+            'nav.features': 'Fonctionnalités',
+            'nav.about': 'À propos',
+            'nav.download': 'Télécharger',
+            'hero.badge': 'macOS 14+ natif — Conçu avec Swift & SwiftUI',
+            'hero.title.line1': 'Esquisse. Forme.',
+            'hero.title.line2': 'Créez librement.',
+            'hero.subtitle': 'Une application de dessin native macOS avec calques, traits vectoriels, outils de forme, remplissage,<br class="hidden md:block" /> pipette, export multi-format et annulation/rétablissement — le tout pour macOS 14+.',
+            'hero.cta': 'Télécharger pour macOS',
+            'hero.features': 'Voir les fonctionnalités',
+            'features.label': 'Fonctionnalités',
+            'features.title': 'Tout ce qu\'il vous faut pour dessiner',
+            'features.subtitle': 'Un studio de dessin complet dans une application native macOS élégante.',
+            'features.freehand.title': 'Dessin à main levée',
+            'features.freehand.desc': 'Traits lisses en courbes de Bézier avec taille, opacité et couleur réglables. Dessinez naturellement avec la sensibilité à la pression.',
+            'features.shapes.title': 'Outils de forme',
+            'features.shapes.desc': 'Outils Ligne, Rectangle et Ellipse avec un panneau <strong>Formes</strong> dédié. Cliquez-glissez pour créer des formes parfaites.',
+            'features.layers.title': 'Système de calques',
+            'features.layers.desc': 'Ajoutez, supprimez, réorganisez et masquez des calques. Chaque calque a sa propre vignette et son contrôle d\'opacité.',
+            'features.fill.title': 'Remplissage',
+            'features.fill.desc': 'Remplissage intelligent par scanline avec traçage de contours et simplification. Parfait pour colorier des zones fermées.',
+            'features.eyedropper.title': 'Pipette',
+            'features.eyedropper.desc': 'Échantillonnez n\'importe quelle couleur de pixel d\'un tap. Retour automatique en mode Dessin.',
+            'features.selection.title': 'Outil de sélection',
+            'features.selection.desc': 'Tapez pour sélectionner un trait, glissez pour le repositionner. Supprimez ou changez d\'outil pour désélectionner.',
+            'features.export.title': 'Export multi-format',
+            'features.export.desc': 'Exportez en PNG, JPEG, TIFF, BMP ou <strong>PDF vectoriel</strong> — depuis un seul menu.',
+            'features.save.title': 'Enregistrer & Ouvrir',
+            'features.save.desc': 'Le format natif <code>.doodlepad</code> préserve chaque trait, calque, image et réglage. Sauvegarde auto toutes les 30 s.',
+            'features.undo.title': 'Annulation/Rétablissement illimité',
+            'features.undo.desc': 'Historique complet des calques. ⌘Z pour annuler, ⇧⌘Z pour rétablir — ne perdez jamais votre travail.',
+            'features.grid.title': 'Grille & Arrière-plan',
+            'features.grid.desc': 'Grille activable, couleur d\'arrière-plan personnalisée et fond transparent.',
+            'features.zoom.title': 'Zoom & Déplacement',
+            'features.zoom.desc': 'Défilez pour vous déplacer, curseur ou ⌘+/⌘- pour zoomer. Réinitialisez à 100% ou ajustez à la fenêtre.',
+            'features.languages.title': '5 langues',
+            'features.languages.desc': 'Entièrement localisé en anglais, français, allemand, espagnol et japonais. Changez via les réglages système.',
+            'features.print.title': 'Impression',
+            'features.print.desc': 'Impression du canvas en pleine résolution via le panneau d\'impression macOS. ⌘P pour imprimer.',
+            'features.prefs.title': 'Préférences',
+            'features.prefs.desc': 'Personnalisez la taille de canvas par défaut et la sauvegarde automatique.',
+            'features.dragdrop.title': 'Glisser-déposer d\'images',
+            'features.dragdrop.desc': 'Déposez des fichiers image directement sur le canvas. Chacun devient un nouveau calque.',
+            'about.label': 'Technologie',
+            'about.title': 'Conçu pour macOS.<br />Réalisé avec Swift.',
+            'about.desc': 'Doodle Pad est une application native macOS écrite entièrement en Swift et SwiftUI. Elle utilise <strong>Swift Package Manager</strong> pour la compilation, <strong>NavigationSplitView</strong> pour sa disposition professionnelle et <strong>Core Graphics</strong> pour un rendu pixel-parfait.',
+            'about.stat.macos': 'macOS minimum',
+            'about.stat.langs': 'Langues',
+            'about.stat.lang': '5.9 + SwiftUI',
+            'about.stat.build': 'Système de build',
+            'about.version': 'Version 1.0',
+            'about.detail.target': 'Cible',
+            'about.detail.lang': 'Langage',
+            'about.detail.framework': 'Framework',
+            'about.detail.build': 'Système de build',
+            'about.detail.localizations': 'Localisations',
+            'about.cta': 'Télécharger Doodle Pad',
+            'cta.title': 'Prêt à dessiner ?',
+            'cta.subtitle': 'Téléchargez Doodle Pad et donnez vie à vos idées sur macOS.',
+            'cta.button': 'Télécharger .app (macOS 14+)',
+            'cta.or': 'ou compilez depuis les sources via <code>swift build</code>',
+            'cta.size': '~12 Mo',
+            'cta.arch': 'Apple Silicon + Intel',
+            'cta.license': 'Open Source',
+            'footer.made': 'Doodle Pad — conçu avec Swift & SwiftUI',
+            'footer.opencode': 'Conçu avec opencode'
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || navigator.language.slice(0, 2) || 'en';
+    if (!i18n[currentLang]) currentLang = 'en';
+
+    function translate(lang) {
+        const strings = i18n[lang];
+        if (!strings) return;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (strings[key]) {
+                el.innerHTML = strings[key];
+            }
+        });
+        document.documentElement.lang = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        translate(lang);
+    }
+
+    translate(currentLang);
+    </script>
+
+</body>
+</html>

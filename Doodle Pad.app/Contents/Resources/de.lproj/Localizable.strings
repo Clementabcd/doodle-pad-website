@@ -1,0 +1,91 @@
+// General
+"Doodle Pad" = "Doodle Pad";
+"New Canvas…" = "Neue Leinwand…";
+"New Canvas" = "Neue Leinwand";
+"Export Drawing" = "Zeichnung exportieren";
+"Drawing-" = "Zeichnung-";
+"Clear" = "Leeren";
+"Cancel" = "Abbrechen";
+"Clear canvas?" = "Leinwand leeren?";
+"This cannot be undone." = "Dies kann nicht rückgängig gemacht werden.";
+"single_stroke" = "%lld Strich";
+"multiple_strokes" = "%lld Striche";
+
+// Menu
+"Export…" = "Exportieren…";
+"Copy Canvas" = "Leinwand kopieren";
+"Canvas" = "Leinwand";
+"Clear Active Layer" = "Aktive Ebene leeren";
+"Clear All Layers" = "Alle Ebenen leeren";
+"Toggle Grid" = "Raster anzeigen";
+"Layers" = "Ebenen";
+"Add Layer" = "Ebene hinzufügen";
+"Delete Active Layer" = "Aktive Ebene löschen";
+"Move Layer Up" = "Ebene nach oben";
+"Move Layer Down" = "Ebene nach unten";
+
+// Sidebar
+"Tools" = "Werkzeuge";
+"Color" = "Farbe";
+"Size" = "Größe";
+"Opacity" = "Deckkraft";
+"Eraser" = "Radierer";
+"View" = "Ansicht";
+"100%" = "100%";
+"Fit" = "Anpassen";
+"Grid" = "Raster";
+"Actions" = "Aktionen";
+"Undo" = "Rückgängig";
+"Redo" = "Wiederholen";
+"Copy" = "Kopieren";
+"Export" = "Exportieren";
+"Layer" = "Ebene";
+"Background" = "Hintergrund";
+"Hide layer" = "Ebene ausblenden";
+"Show layer" = "Ebene einblenden";
+
+// Drawing Section
+"Drawing" = "Zeichnen";
+"Draw" = "Malen";
+"Fill" = "Füllen";
+"Line" = "Linie";
+"Rectangle" = "Rechteck";
+"Ellipse" = "Ellipse";
+"Drop" = "Pipette";
+"Export as" = "Exportieren als";
+"Background color" = "Hintergrundfarbe";
+"Transparent background" = "Transparenter Hintergrund";
+
+// File
+"Open Drawing" = "Zeichnung öffnen";
+"Open…" = "Öffnen…";
+"Save As…" = "Speichern unter…";
+
+// Sections
+"Forms" = "Formen";
+
+// Close Confirmation
+"Do you want to save your drawing?" = "Möchten Sie Ihre Zeichnung speichern?";
+"Your drawing will be lost if you don't save." = "Ihre Zeichnung geht verloren, wenn Sie nicht speichern.";
+"Save" = "Speichern";
+"Don't Save" = "Nicht speichern";
+"Save Drawing" = "Zeichnung speichern";
+
+// Help / tooltips
+"Undo (⌘Z)" = "Rückgängig (⌘Z)";
+"Redo (⇧⌘Z)" = "Wiederholen (⇧⌘Z)";
+"Eraser (E)" = "Radierer (E)";
+"Actual size" = "Originalgröße";
+"Fit to window" = "An Fenster anpassen";
+"Toggle grid (⌘G)" = "Raster (⌘G)";
+"Copy to clipboard" = "In Zwischenablage kopieren";
+"Export PNG" = "Als PNG exportieren";
+"New canvas (⌘N)" = "Neue Leinwand (⌘N)";
+
+// New Canvas Sheet
+"Custom size" = "Benutzerdefiniert";
+"Width" = "Breite";
+"Height" = "Höhe";
+"px" = "px";
+"Create Canvas" = "Leinwand erstellen";
+"Brush" = "Pinsel";

@@ -1,0 +1,91 @@
+// General
+"Doodle Pad" = "Doodle Pad";
+"New Canvas…" = "Nuevo lienzo…";
+"New Canvas" = "Nuevo lienzo";
+"Export Drawing" = "Exportar dibujo";
+"Drawing-" = "Dibujo-";
+"Clear" = "Borrar";
+"Cancel" = "Cancelar";
+"Clear canvas?" = "¿Borrar lienzo?";
+"This cannot be undone." = "Esta acción no se puede deshacer.";
+"single_stroke" = "%lld trazo";
+"multiple_strokes" = "%lld trazos";
+
+// Menu
+"Export…" = "Exportar…";
+"Copy Canvas" = "Copiar lienzo";
+"Canvas" = "Lienzo";
+"Clear Active Layer" = "Borrar capa activa";
+"Clear All Layers" = "Borrar todas las capas";
+"Toggle Grid" = "Mostrar cuadrícula";
+"Layers" = "Capas";
+"Add Layer" = "Añadir capa";
+"Delete Active Layer" = "Eliminar capa activa";
+"Move Layer Up" = "Subir capa";
+"Move Layer Down" = "Bajar capa";
+
+// Sidebar
+"Tools" = "Herramientas";
+"Color" = "Color";
+"Size" = "Tamaño";
+"Opacity" = "Opacidad";
+"Eraser" = "Goma";
+"View" = "Vista";
+"100%" = "100%";
+"Fit" = "Ajustar";
+"Grid" = "Cuadrícula";
+"Actions" = "Acciones";
+"Undo" = "Deshacer";
+"Redo" = "Rehacer";
+"Copy" = "Copiar";
+"Export" = "Exportar";
+"Layer" = "Capa";
+"Background" = "Fondo";
+"Hide layer" = "Ocultar capa";
+"Show layer" = "Mostrar capa";
+
+// Drawing Section
+"Drawing" = "Dibujo";
+"Draw" = "Dibujar";
+"Fill" = "Rellenar";
+"Line" = "Línea";
+"Rectangle" = "Rectángulo";
+"Ellipse" = "Elipse";
+"Drop" = "Cuentagotas";
+"Export as" = "Exportar como";
+"Background color" = "Color de fondo";
+"Transparent background" = "Fondo transparente";
+
+// File
+"Open Drawing" = "Abrir dibujo";
+"Open…" = "Abrir…";
+"Save As…" = "Guardar como…";
+
+// Sections
+"Forms" = "Formas";
+
+// Close Confirmation
+"Do you want to save your drawing?" = "¿Quieres guardar tu dibujo?";
+"Your drawing will be lost if you don't save." = "Tu dibujo se perderá si no lo guardas.";
+"Save" = "Guardar";
+"Don't Save" = "No guardar";
+"Save Drawing" = "Guardar dibujo";
+
+// Help / tooltips
+"Undo (⌘Z)" = "Deshacer (⌘Z)";
+"Redo (⇧⌘Z)" = "Rehacer (⇧⌘Z)";
+"Eraser (E)" = "Goma (E)";
+"Actual size" = "Tamaño real";
+"Fit to window" = "Ajustar a la ventana";
+"Toggle grid (⌘G)" = "Cuadrícula (⌘G)";
+"Copy to clipboard" = "Copiar al portapapeles";
+"Export PNG" = "Exportar PNG";
+"New canvas (⌘N)" = "Nuevo lienzo (⌘N)";
+
+// New Canvas Sheet
+"Custom size" = "Tamaño personalizado";
+"Width" = "Ancho";
+"Height" = "Alto";
+"px" = "px";
+"Create Canvas" = "Crear lienzo";
+"Brush" = "Pincel";

@@ -1,0 +1,91 @@
+// General
+"Doodle Pad" = "Doodle Pad";
+"New Canvas…" = "新規キャンバス…";
+"New Canvas" = "新規キャンバス";
+"Export Drawing" = "描画を書き出し";
+"Drawing-" = "描画-";
+"Clear" = "クリア";
+"Cancel" = "キャンセル";
+"Clear canvas?" = "キャンバスをクリアしますか？";
+"This cannot be undone." = "この操作は元に戻せません。";
+"single_stroke" = "%lld ストローク";
+"multiple_strokes" = "%lld ストローク";
+
+// Menu
+"Export…" = "書き出し…";
+"Copy Canvas" = "キャンバスをコピー";
+"Canvas" = "キャンバス";
+"Clear Active Layer" = "アクティブレイヤーをクリア";
+"Clear All Layers" = "全レイヤーをクリア";
+"Toggle Grid" = "グリッド表示";
+"Layers" = "レイヤー";
+"Add Layer" = "レイヤーを追加";
+"Delete Active Layer" = "アクティブレイヤーを削除";
+"Move Layer Up" = "レイヤーを上へ";
+"Move Layer Down" = "レイヤーを下へ";
+
+// Sidebar
+"Tools" = "ツール";
+"Color" = "色";
+"Size" = "サイズ";
+"Opacity" = "不透明度";
+"Eraser" = "消しゴム";
+"View" = "表示";
+"100%" = "100%";
+"Fit" = "フィット";
+"Grid" = "グリッド";
+"Actions" = "アクション";
+"Undo" = "元に戻す";
+"Redo" = "やり直す";
+"Copy" = "コピー";
+"Export" = "書き出し";
+"Layer" = "レイヤー";
+"Background" = "背景";
+"Hide layer" = "レイヤーを非表示";
+"Show layer" = "レイヤーを表示";
+
+// Drawing Section
+"Drawing" = "描画";
+"Draw" = "描く";
+"Fill" = "塗りつぶし";
+"Line" = "直線";
+"Rectangle" = "長方形";
+"Ellipse" = "楕円";
+"Drop" = "スポイト";
+"Export as" = "書き出し形式";
+"Background color" = "背景色";
+"Transparent background" = "透明な背景";
+
+// File
+"Open Drawing" = "描画を開く";
+"Open…" = "開く…";
+"Save As…" = "別名で保存…";
+
+// Sections
+"Forms" = "図形";
+
+// Close Confirmation
+"Do you want to save your drawing?" = "描画を保存しますか？";
+"Your drawing will be lost if you don't save." = "保存しないと描画は失われます。";
+"Save" = "保存";
+"Don't Save" = "保存しない";
+"Save Drawing" = "描画を保存";
+
+// Help / tooltips
+"Undo (⌘Z)" = "元に戻す (⌘Z)";
+"Redo (⇧⌘Z)" = "やり直す (⇧⌘Z)";
+"Eraser (E)" = "消しゴム (E)";
+"Actual size" = "実際のサイズ";
+"Fit to window" = "ウィンドウに合わせる";
+"Toggle grid (⌘G)" = "グリッド (⌘G)";
+"Copy to clipboard" = "クリップボードにコピー";
+"Export PNG" = "PNGを書き出し";
+"New canvas (⌘N)" = "新規キャンバス (⌘N)";
+
+// New Canvas Sheet
+"Custom size" = "カスタムサイズ";
+"Width" = "幅";
+"Height" = "高さ";
+"px" = "px";
+"Create Canvas" = "キャンバスを作成";
+"Brush" = "ブラシ";

@@ -1,0 +1,91 @@
+// General
+"Doodle Pad" = "Doodle Pad";
+"New Canvas…" = "Nouveau canevas…";
+"New Canvas" = "Nouveau canevas";
+"Export Drawing" = "Exporter le dessin";
+"Drawing-" = "Dessin-";
+"Clear" = "Effacer";
+"Cancel" = "Annuler";
+"Clear canvas?" = "Effacer le canevas ?";
+"This cannot be undone." = "Cette action est irréversible.";
+"single_stroke" = "%lld trait";
+"multiple_strokes" = "%lld traits";
+
+// Menu
+"Export…" = "Exporter…";
+"Copy Canvas" = "Copier le canevas";
+"Canvas" = "Canevas";
+"Clear Active Layer" = "Effacer le calque actif";
+"Clear All Layers" = "Effacer tous les calques";
+"Toggle Grid" = "Afficher la grille";
+"Layers" = "Calques";
+"Add Layer" = "Ajouter un calque";
+"Delete Active Layer" = "Supprimer le calque actif";
+"Move Layer Up" = "Monter le calque";
+"Move Layer Down" = "Descendre le calque";
+
+// Sidebar
+"Tools" = "Outils";
+"Color" = "Couleur";
+"Size" = "Taille";
+"Opacity" = "Opacité";
+"Eraser" = "Gomme";
+"View" = "Affichage";
+"100%" = "100%";
+"Fit" = "Ajuster";
+"Grid" = "Grille";
+"Actions" = "Actions";
+"Undo" = "Annuler";
+"Redo" = "Rétablir";
+"Copy" = "Copier";
+"Export" = "Exporter";
+"Layer" = "Calque";
+"Background" = "Arrière-plan";
+"Hide layer" = "Masquer le calque";
+"Show layer" = "Afficher le calque";
+
+// Drawing Section
+"Drawing" = "Dessin";
+"Draw" = "Dessiner";
+"Fill" = "Remplir";
+"Line" = "Ligne";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Drop" = "Pipette";
+"Export as" = "Exporter en";
+"Background color" = "Couleur de fond";
+"Transparent background" = "Fond transparent";
+
+// File
+"Open Drawing" = "Ouvrir le dessin";
+"Open…" = "Ouvrir…";
+"Save As…" = "Enregistrer sous…";
+
+// Sections
+"Forms" = "Formes";
+
+// Close Confirmation
+"Do you want to save your drawing?" = "Voulez-vous enregistrer votre dessin ?";
+"Your drawing will be lost if you don't save." = "Votre dessin sera perdu si vous ne l'enregistrez pas.";
+"Save" = "Enregistrer";
+"Don't Save" = "Ne pas enregistrer";
+"Save Drawing" = "Enregistrer le dessin";
+
+// Help / tooltips
+"Undo (⌘Z)" = "Annuler (⌘Z)";
+"Redo (⇧⌘Z)" = "Rétablir (⇧⌘Z)";
+"Eraser (E)" = "Gomme (E)";
+"Actual size" = "Taille réelle";
+"Fit to window" = "Ajuster à la fenêtre";
+"Toggle grid (⌘G)" = "Grille (⌘G)";
+"Copy to clipboard" = "Copier dans le presse-papiers";
+"Export PNG" = "Exporter PNG";
+"New canvas (⌘N)" = "Nouveau canevas (⌘N)";
+
+// New Canvas Sheet
+"Custom size" = "Taille personnalisée";
+"Width" = "Largeur";
+"Height" = "Hauteur";
+"px" = "px";
+"Create Canvas" = "Créer le canevas";
+"Brush" = "Pinceau";
